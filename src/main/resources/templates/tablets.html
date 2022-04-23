@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tablets</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<table class="table_dark">
+    <tr>
+        <th><a th:href="@{/brands}">Производитель</a></th>
+        <th>Диагональ</th>
+        <th>ОЗУ</th>
+        <th>ОС</th>
+        <th>Память</th>
+    </tr>
+    <tr th:each="tablet: ${tablets}">
+        <td th:text="${tablet.brand}" />
+        <td th:text="${tablet.diagonal} + '&quot;'" />
+        <td th:text="${tablet.ram} + ' гБ'" />
+        <td th:text="${tablet.os}" />
+        <td th:text="${tablet.memory} + ' гБ'" />
+    </tr>
+    <form th:action="@{/addTablet}" th:object="${tabletAdd}" th:method="post">
+        <tr>
+            <td><input type="text" th:field="*{brand.name}"></input></td>
+            <td><input type="text" th:field="*{diagonal}"></input></td>
+            <td><input type="text" th:field="*{ram}"></input></td>
+            <td><input type="text" th:field="*{os.name}"></input></td>
+            <td><input type="text" th:field="*{memory}"></input></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button class="button_tablets" type="submit">Добавить</button></td>
+        </tr>
+    </form>
+</table>
+</body>
+</html>
